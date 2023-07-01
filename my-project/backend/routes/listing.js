@@ -1,6 +1,25 @@
 
 const express = require("express");
 const router = express.Router();
+const swaggerJSDoc = require('swagger-jsdoc')
+const swaggerUi = require('swagger-ui-express')
+
+const options = {
+    definition: {
+        openapi:'3.0.0',
+        info: {
+            title: 'Node js Api Projecr for Mongodb',
+            version: '1.0.0'
+        },
+        servers: [{
+            api : 'http://localhost:4000/'
+        }]
+    },
+    apis:['./listing.js']
+}
+
+const swaggerSpec = swaggerJSDoc(options);
+
 
 const users = [];
 
