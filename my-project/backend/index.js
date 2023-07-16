@@ -1,8 +1,17 @@
-const express = require("express");
+const express = require('express');
 const app = express();
+const cors = require('cors');
+const db = require('./db');
+const userRoutes = require('./routes/user');
 
-// imports routes
-const listingRoutes = require("./routes/listing");
+app.use(express.json());
+app.use(cors());
 
-app.use("/api/listning", listingRoutes)
-app.listen(4000, () => console.log("Server started"))
+// Use user routes
+app.use('/api/users', userRoutes);
+
+// Start the server
+const PORT = 4000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
